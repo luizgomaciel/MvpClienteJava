@@ -1,7 +1,7 @@
 package br.java.mvp.host;
 
-import br.java.mvp.application.service.exception.BusinessException;
-import br.java.mvp.application.service.exception.NoContentException;
+import br.java.mvp.application.exception.BusinessException;
+import br.java.mvp.application.exception.NoContentException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

@@ -6,3 +6,10 @@ server:
   servlet:
     context-path: /clientes
 
+spring:
+  application:
+    name: MvpClienteJava
+  profiles:
+    active: lcl
+
+

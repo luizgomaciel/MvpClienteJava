@@ -1,8 +1,7 @@
 package br.java.mvp.host.cliente;
 
 import br.java.mvp.application.service.ClienteService;
-import br.java.mvp.application.service.exception.BusinessException;
-import br.java.mvp.application.service.exception.NoContentException;
+import br.java.mvp.application.exception.BusinessException;
 import br.java.mvp.host.MessageError;
 import br.java.mvp.host.cliente.dto.ClienteRequest;
 import br.java.mvp.host.cliente.dto.ClienteResponse;
