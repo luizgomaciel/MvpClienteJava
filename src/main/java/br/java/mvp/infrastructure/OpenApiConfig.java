@@ -12,8 +12,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfig {
 
-    public static final String TAG_CLIENTE = "Cliente";
-
     @Autowired
     private BuildProperties buildProps;
 
@@ -25,7 +23,6 @@ public class OpenApiConfig {
                 .version(this.buildProps.getVersion());
 
         return new OpenAPI().components(new Components())
-                .addTagsItem(createTag(TAG_CLIENTE, "Operações relacionadas ao domínio de Cliente."))
                 .info(info);
     }
 
