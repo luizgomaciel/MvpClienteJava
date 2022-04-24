@@ -12,4 +12,11 @@ spring:
   profiles:
     active: lcl
 
+---
+spring:
+  profiles: lcl
+  data:
+    mongodb:
+      uri: mongodb+srv://teste-dev:teste-dev@allmarket-hml.lojse.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
 

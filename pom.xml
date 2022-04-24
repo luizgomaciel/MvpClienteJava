@@ -33,14 +33,6 @@
         </dependency>
         <!-- SPRING - FIM -->
 
-        <!-- BANCO - INICIO -->
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>3.12.11</version>
-        </dependency>
-        <!-- BANCO - FIM -->
-
         <!-- OPENAPI - INICIO -->
         <dependency>
             <groupId>org.springdoc</groupId>
