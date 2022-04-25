@@ -1,0 +1,55 @@
+version: '3'
+
+networks:
+  broker-mongo:
+    driver: bridge
+
+services:
+  mongo-express:
+    image: 'lgmaciel/mongo-express:0.0.1'
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_BASICAUTH_USERNAME=client
+      - ME_CONFIG_BASICAUTH_PASSWORD=adminclient
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=adminpass
+    depends_on:
+      - mongo
+    networks:
+      - broker-mongo
+
+  mongo:
+    image: 'lgmaciel/mongo:0.0.1-5.0.1'
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=adminpass
+      - MONGO_INITDB_DATABASE=db
+    networks:
+      - broker-mongo
+    volumes:
+      - mongo_data:/data/db
+
+  java:
+    build: Dockerfile .
+    ports:
+      - 8081:8081
+    environment:
+      - 'MONGO_URI=mongo:27017'
+      - 'MONGO_DATABASE=db'
+      - 'MONGO_USER=admin'
+      - 'MONGO_PASSWORD=adminpass'
+      - 'DATA_MONGODB_REPOSITORIES_ENABLED=true'
+      - 'SERVER_PORT=8081'
+      - 'SERVER_SERVELT_CONTEXT_PATH=/clientes'
+    networks:
+      - broker-mongo
+
+volumes:
+  mongo_data:
+

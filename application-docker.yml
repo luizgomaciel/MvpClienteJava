@@ -1,0 +1,24 @@
+project:
+  version: '@project.version@'
+
+server:
+  port: ${SERVER_PORT}
+  servlet:
+    context-path: ${SERVER_SERVELT_CONTEXT_PATH}
+
+spring:
+  application:
+    name: MvpClienteJava
+  profiles:
+    active: docker
+
+---
+spring:
+  profiles: docker
+  data:
+    mongodb:
+      uri: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_URI}/${MONGO_DATABASE}
+      repositories:
+        enabled: ${DATA_MONGODB_REPOSITORIES_ENABLED}
+
+
