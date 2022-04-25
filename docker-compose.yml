@@ -49,6 +49,8 @@ services:
       - 'SERVER_SERVELT_CONTEXT_PATH=/clientes'
     networks:
       - broker-mongo
+    depends_on:
+      - mongo
 
 volumes:
   mongo_data:
