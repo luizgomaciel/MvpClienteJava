@@ -5,7 +5,6 @@ import br.java.mvp.application.service.ClienteService;
 import br.java.mvp.host.MessageError;
 import br.java.mvp.host.cliente.dto.ClienteRequest;
 import br.java.mvp.host.cliente.dto.ClienteResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -17,7 +16,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -52,7 +50,7 @@ public class ClienteHost {
             }, description = "INTERNAL_SERVER_ERROR")
     })
     public ResponseEntity<ClienteResponse> incluirCliente(
-            @Parameter(name = "cliente") @RequestBody @Valid ClienteRequest clienteRequest) throws JsonProcessingException {
+            @Parameter(name = "cliente") @RequestBody @Valid ClienteRequest clienteRequest)  {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.incluirCliente(clienteRequest));
     }
 
@@ -75,7 +73,7 @@ public class ClienteHost {
             }, description = "INTERNAL_SERVER_ERROR")
     })
     public ResponseEntity<ClienteResponse> alterarCliente(
-            @Parameter(name = "id") @PathVariable(name = "id", required = true) Long id,
+            @Parameter(name = "id", description = "ID do Cliente") @PathVariable(name = "id", required = true) Long id,
             @Parameter(name = "cliente") @RequestBody @Valid ClienteRequest clienteRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.alterarCliente(id, clienteRequest));
     }
@@ -98,8 +96,8 @@ public class ClienteHost {
             }, description = "INTERNAL_SERVER_ERROR")
     })
     public ResponseEntity<Page<ClienteResponse>> consultarClientes(
-            @Parameter(name = "page") @RequestParam("page") int pageIndex,
-            @Parameter(name = "size") @RequestParam("size") int pageSize) {
+            @Parameter(name = "page", description = "Número da página") @RequestParam("page") int pageIndex,
+            @Parameter(name = "size", description = "Quantidade de itens por página") @RequestParam("size") int pageSize) {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.consultarClientes(PageRequest.of(pageIndex, pageSize)));
     }
 
@@ -121,9 +119,9 @@ public class ClienteHost {
             }, description = "INTERNAL_SERVER_ERROR")
     })
     public ResponseEntity<Page<ClienteResponse>> consultarClienteByIdade(
-            @Parameter(name = "idade") @PathVariable(name = "idade", required = true) Integer idade,
-            @Parameter(name = "page") @RequestParam("page") int pageIndex,
-            @Parameter(name = "size") @RequestParam("size") int pageSize) {
+            @Parameter(name = "idade", description = "Idade do Cliente") @PathVariable(name = "idade", required = true) Integer idade,
+            @Parameter(name = "page", description = "Número da página") @RequestParam("page") int pageIndex,
+            @Parameter(name = "size", description = "Quantidade de itens por página") @RequestParam("size") int pageSize) {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.consultarClienteByIdade(idade,PageRequest.of(pageIndex, pageSize)));
     }
 
@@ -145,7 +143,7 @@ public class ClienteHost {
             }, description = "INTERNAL_SERVER_ERROR")
     })
     public ResponseEntity<ClienteResponse> consultarCliente(
-            @Parameter(name = "id") @PathVariable(name = "id", required = true) Long id) {
+            @Parameter(name = "id", description = "ID do Cliente") @PathVariable(name = "id", required = true) Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.consultarCliente(id));
     }
 
@@ -166,8 +164,8 @@ public class ClienteHost {
                     @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = MessageError.class)))
             }, description = "INTERNAL_SERVER_ERROR")
     })
-    public ResponseEntity excluirCliente(
-            @Parameter(name = "id") @PathVariable(name = "id", required = true) Long id) {
+    public ResponseEntity<Void> excluirCliente(
+            @Parameter(name = "id", description = "ID do Cliente") @PathVariable(name = "id", required = true) Long id) {
         clienteService.excluirCliente(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
