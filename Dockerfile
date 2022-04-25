@@ -13,7 +13,7 @@ USER root
 EXPOSE ${SERVER_PORT}
 
 WORKDIR /app
-ADD ./target/MvpClienteJava-0.0.1.jar /app/
+ADD ./app/MvpClienteJava-0.0.1.jar /app/
 ADD ./application-docker.yml /app/
 
 ENTRYPOINT ["java", "-Xmx512m", "-ms128m", "-jar", "/app/MvpClienteJava-0.0.1.jar", "--spring.config.location=file:///app/application-docker.yml"]
