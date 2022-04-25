@@ -42,8 +42,8 @@ services:
     environment:
       - 'MONGO_URI=mongo:27017'
       - 'MONGO_DATABASE=db'
-      - 'MONGO_USER=client'
-      - 'MONGO_PASSWORD=clientpass'
+      - 'MONGO_USER=admin'
+      - 'MONGO_PASSWORD=adminpass'
       - 'DATA_MONGODB_REPOSITORIES_ENABLED=true'
       - 'SERVER_PORT=8082'
       - 'SERVER_SERVELT_CONTEXT_PATH=/clientes'
