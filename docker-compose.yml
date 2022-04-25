@@ -13,7 +13,7 @@ services:
       - ME_CONFIG_MONGODB_SERVER=mongo
       - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
       - ME_CONFIG_BASICAUTH_USERNAME=client
-      - ME_CONFIG_BASICAUTH_PASSWORD=adminclient
+      - ME_CONFIG_BASICAUTH_PASSWORD=clientpass
       - ME_CONFIG_MONGODB_PORT=27017
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=adminpass
@@ -38,14 +38,14 @@ services:
   java:
     build: .
     ports:
-      - 8081:8081
+      - 8082:8082
     environment:
       - 'MONGO_URI=mongo:27017'
       - 'MONGO_DATABASE=db'
-      - 'MONGO_USER=admin'
-      - 'MONGO_PASSWORD=adminpass'
+      - 'MONGO_USER=client'
+      - 'MONGO_PASSWORD=clientpass'
       - 'DATA_MONGODB_REPOSITORIES_ENABLED=true'
-      - 'SERVER_PORT=8081'
+      - 'SERVER_PORT=8082'
       - 'SERVER_SERVELT_CONTEXT_PATH=/clientes'
     networks:
       - broker-mongo
