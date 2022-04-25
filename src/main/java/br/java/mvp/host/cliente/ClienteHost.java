@@ -2,7 +2,6 @@ package br.java.mvp.host.cliente;
 
 import br.java.mvp.application.exception.BusinessException;
 import br.java.mvp.application.service.ClienteService;
-import br.java.mvp.domain.cliente.Cliente;
 import br.java.mvp.host.MessageError;
 import br.java.mvp.host.cliente.dto.ClienteRequest;
 import br.java.mvp.host.cliente.dto.ClienteResponse;
@@ -17,6 +16,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -98,8 +98,9 @@ public class ClienteHost {
             }, description = "INTERNAL_SERVER_ERROR")
     })
     public ResponseEntity<Page<ClienteResponse>> consultarClientes(
-            @Parameter(name = "pageable") Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(clienteService.consultarClientes(pageable));
+            @Parameter(name = "page") @RequestParam("page") int pageIndex,
+            @Parameter(name = "size") @RequestParam("size") int pageSize) {
+        return ResponseEntity.status(HttpStatus.OK).body(clienteService.consultarClientes(PageRequest.of(pageIndex, pageSize)));
     }
 
     @Operation(description = "Consulta de clientes")
@@ -121,8 +122,9 @@ public class ClienteHost {
     })
     public ResponseEntity<Page<ClienteResponse>> consultarClienteByIdade(
             @Parameter(name = "idade") @PathVariable(name = "idade", required = true) Integer idade,
-            @Parameter(name = "pageable") Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(clienteService.consultarClienteByIdade(idade,pageable));
+            @Parameter(name = "page") @RequestParam("page") int pageIndex,
+            @Parameter(name = "size") @RequestParam("size") int pageSize) {
+        return ResponseEntity.status(HttpStatus.OK).body(clienteService.consultarClienteByIdade(idade,PageRequest.of(pageIndex, pageSize)));
     }
 
     @Operation(description = "Consulta de cliente por ID")
