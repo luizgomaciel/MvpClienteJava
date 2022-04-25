@@ -40,7 +40,7 @@ services:
     ports:
       - 8082:8082
     environment:
-      - 'MONGO_URI=mongo'
+      - 'MONGO_URI=mongo:27017'
       - 'MONGO_DATABASE=db'
       - 'MONGO_USER=client'
       - 'MONGO_PASSWORD=clientpass'
