@@ -1,0 +1,22 @@
+project:
+  version: '@project.version@'
+
+server:
+  port: 8091
+  servlet:
+    context-path: /clientes
+
+spring:
+  application:
+    name: MvpClienteJava
+  profiles:
+    active: lcl
+
+---
+spring:
+  profiles: lcl
+  data:
+    mongodb:
+      uri: mongodb+srv://teste-dev:teste-dev@allmarket-hml.lojse.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+
