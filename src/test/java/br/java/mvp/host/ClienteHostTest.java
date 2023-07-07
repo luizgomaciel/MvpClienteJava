@@ -44,7 +44,7 @@ public class ClienteHostTest {
 
     @Test
     public void testIncluirCliente() throws Exception {
-        this.mockMvc.perform(post("/cadastros")
+        this.mockMvc.perform(post("/v1/cadastros")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(ClienteHostMock.getClienteResponse()))
                 .andExpect(status().is(HttpStatus.CREATED.value()));
@@ -52,13 +52,13 @@ public class ClienteHostTest {
 
     @Test
     public void testIncluirClienteException() throws Exception {
-        this.mockMvc.perform(post("/cadastros"))
+        this.mockMvc.perform(post("/v1/cadastros"))
                 .andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
     }
 
     @Test
     public void testAlterarCliente() throws Exception {
-        this.mockMvc.perform(put("/atualizacoes/1231")
+        this.mockMvc.perform(put("/v1/atualizacoes/1231")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(ClienteHostMock.getClienteResponse()))
                 .andExpect(status().is(HttpStatus.CREATED.value()));
@@ -66,7 +66,7 @@ public class ClienteHostTest {
 
     @Test
     public void testAlterarClienteException() throws Exception {
-        this.mockMvc.perform(put("/atualizacoes/1231"))
+        this.mockMvc.perform(put("/v1/atualizacoes/1231"))
                 .andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
     }
 
@@ -77,13 +77,13 @@ public class ClienteHostTest {
         params.put("size", Arrays.asList("10"));
 
         MultiValueMap<String, String> mvm = new LinkedMultiValueMap<>(params);
-        this.mockMvc.perform(get("/consultas").queryParams(mvm))
+        this.mockMvc.perform(get("/v1/consultas").queryParams(mvm))
                 .andExpect(status().is(HttpStatus.OK.value()));
     }
 
     @Test
     public void testConsultarClientesException() throws Exception {
-        this.mockMvc.perform(get("/consultas"))
+        this.mockMvc.perform(get("/v1/consultas"))
                 .andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
     }
 
@@ -94,37 +94,37 @@ public class ClienteHostTest {
         params.put("size", Arrays.asList("10"));
 
         MultiValueMap<String, String> mvm = new LinkedMultiValueMap<>(params);
-        this.mockMvc.perform(get("/consultas/12/caracteristicas").queryParams(mvm))
+        this.mockMvc.perform(get("/v1/consultas/12/caracteristicas").queryParams(mvm))
                 .andExpect(status().is(HttpStatus.OK.value()));
     }
 
     @Test
     public void testConsultarClientesbyIdadeException() throws Exception {
-        this.mockMvc.perform(get("/consultas/12/caracteristicas"))
+        this.mockMvc.perform(get("/v1/consultas/12/caracteristicas"))
                 .andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
     }
 
     @Test
     public void testConsultarCliente() throws Exception {
-        this.mockMvc.perform(get("/consultas/1231"))
+        this.mockMvc.perform(get("/v1/consultas/1231"))
                 .andExpect(status().is(HttpStatus.OK.value()));
     }
 
     @Test
     public void testConsultarClienteException() throws Exception {
-        this.mockMvc.perform(get("/consultas/a1231"))
+        this.mockMvc.perform(get("/v1/consultas/a1231"))
                 .andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
     }
 
     @Test
     public void testExcluirCliente() throws Exception {
-        this.mockMvc.perform(delete("/exclusoes/1231"))
+        this.mockMvc.perform(delete("/v1/exclusoes/1231"))
                 .andExpect(status().is(HttpStatus.OK.value()));
     }
 
     @Test
     public void testExcluirClienteException() throws Exception {
-        this.mockMvc.perform(delete("/exclusoes/a1231"))
+        this.mockMvc.perform(delete("/v1/exclusoes/a1231"))
                 .andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
     }
 }

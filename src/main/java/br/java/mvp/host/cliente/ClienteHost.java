@@ -23,9 +23,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Tag(name = "Cliente", description = "Operações relacionadas ao domínio de Cliente")
+@Tag(name = "Cliente Java", description = "Operações relacionadas ao domínio de Cliente")
 @RestController
 @Validated
+@RequestMapping(value = "/v1")
 public class ClienteHost {
 
     @Autowired

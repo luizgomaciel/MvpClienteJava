@@ -16,4 +16,5 @@ public interface ClienteServiceMapper {
     default Page<ClienteResponse> toPageClienteResponse(Page<Cliente> page) {
         return page.map(this::toClienteResponse);
     }
+
 }
