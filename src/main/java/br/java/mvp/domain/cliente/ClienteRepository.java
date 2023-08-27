@@ -4,12 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
-import org.springframework.stereotype.Repository;
 
-
-@Repository
 public interface ClienteRepository extends MongoRepository<Cliente, Long> {
-
     @Query(value = "{ 'nome': ?0, 'idade': ?1 }", exists = true)
     boolean existsByNomeAndIdade(String nome, Integer idade);
 

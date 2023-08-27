@@ -25,6 +25,7 @@ import javax.validation.Valid;
 
 @Tag(name = "Cliente", description = "Operações relacionadas ao domínio de Cliente")
 @RestController
+@RequestMapping(path = "/v1")
 @Validated
 public class ClienteHost {
 
